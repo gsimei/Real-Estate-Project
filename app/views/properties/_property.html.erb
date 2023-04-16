@@ -1,7 +1,3 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-
-<% @properties.each do |property| %>
 <div id="<%= dom_id property %>">
   <p>
     <strong>Footage:</strong>
@@ -39,8 +35,8 @@
   </p>
 
   <p>
-    <strong>Primary data:</strong>
-    <%= property.primary_data %>
+    <strong>Primary date:</strong>
+    <%= property.primary_date %>
   </p>
 
   <p>
@@ -59,8 +55,8 @@
   </p>
 
   <p>
-    <strong>Type:</strong>
-    <%= property.type %>
+    <strong>Category:</strong>
+    <%= property.category %>
   </p>
 
   <p>
@@ -89,19 +85,8 @@
   </p>
 
   <p>
-    <strong>Owner:</strong>
-    <%= property.owner_id %>
-  </p>
-
-  <p>
     <strong>User:</strong>
     <%= property.user_id %>
   </p>
-<%= link_to "Show this property", property %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New property", new_property_path %>
 
 </div>

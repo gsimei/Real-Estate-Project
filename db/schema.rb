@@ -10,9 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_16_152722) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_16_160245) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "owners", force: :cascade do |t|
+    t.string "name"
+    t.string "cel_prone"
+    t.string "alt_phone"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "properties", force: :cascade do |t|
+    t.json "footage"
+    t.json "services"
+    t.json "leisure"
+    t.json "social"
+    t.json "intimate"
+    t.json "cabinet"
+    t.json "address"
+    t.json "primary_date"
+    t.json "floor"
+    t.json "infrastructure"
+    t.json "finality"
+    t.json "category"
+    t.json "intention"
+    t.json "price"
+    t.json "location"
+    t.boolean "published"
+    t.boolean "highlighted"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_properties_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,4 +59,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_16_152722) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "properties", "users"
 end
