@@ -1,0 +1,7 @@
+pt:
+  activerecord:
+    attributes:
+      property:
+        footage:
+          area_do_terreno: "Área do Terreno"
+          area_construida: "Área Construída"

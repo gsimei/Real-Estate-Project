@@ -16,7 +16,7 @@
 
   <!-- Fields for nested attributes -->
   <%= f.fields_for :footage do |ff| %>
-    <%= ff.label :area_do_terreno %>
+    <%= ff.label "Area do terreno" %>
     <%= ff.number_field :area_do_terreno, step: 0.01 %>
 
     <%= ff.label :area_construida %>

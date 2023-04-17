@@ -29,5 +29,4 @@ class Property < ApplicationRecord
   # attribute :finality, :json, default: { 'Venda': false, 'Locação': false }
   # attribute :intention, :json, default: { 'Comercial': false, 'Residencial': false, 'Industrial': false, 'Rural': false }
   # attribute :category, :json, default: { 'Apartamento': false, 'Casa': false, 'Casa de condomínio': false, 'Casa de vila': false, 'Cobertura': false, 'Flat': false, 'Loft': false, 'Sobrado': false, 'Terreno': false, 'Chácara': false, 'Fazenda': false, 'Sítio': false, 'Galpão': false, 'Sala': false, 'Prédio': false, 'Ponto comercial': false, 'Kitnet': false, 'Studio': false, 'Lote': false, 'Área': false }
-
 end

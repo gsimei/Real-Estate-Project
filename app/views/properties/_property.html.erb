@@ -13,14 +13,29 @@
 
 <strong>Footage:</strong>
 <% property.footage.each do |key, value| %>
-  <%= key %>: <%= value.to_f %><br>
-<% end %>
-  </p>
+  <%= key.humanize.titleize %>: <%= value.to_f %><br>
 
+<% end %>
+
+  <% area_total =  property.footage['area_do_terreno'].to_f + property.footage['area_construida'].to_f  %>
+   Area Total = <%= area_total %>
+  </p>
+<%= t("hello") %>
   <p>
     <strong>Services:</strong>
     <%= property.services %>
-  </p>
+    <strong>Services:</strong>
+<% property.services.each do |key, value| %>
+  <% if value == "1" %>
+    <%= key.humanize.titleize %>: true<br>
+  <% end %>
+<% end %>
+<strong>Services:</strong>
+<% property.services.each do |key, value| %>
+  <% if value == "1" %>
+    <%= key.humanize.titleize %><br>
+  <% end %>
+<% end %>
 
   <p>
     <strong>Leisure:</strong>
@@ -51,6 +66,10 @@
     <strong>Floor:</strong>
     <%= property.floor %>
   </p>
+<strong>Footage:</strong>
+<% property.footage.each do |key, value| %>
+  <%= t("activerecord.attributes.property.footage.#{key}") %>: <%= value.to_f %><br>
+<% end %>
 
   <p>
     <strong>Infrastructure:</strong>
