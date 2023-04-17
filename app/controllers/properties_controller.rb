@@ -13,7 +13,7 @@ class PropertiesController < ApplicationController
   # GET /properties/new
   def new
     @property = Property.new
-    
+
   end
 
   # GET /properties/1/edit
@@ -59,6 +59,14 @@ class PropertiesController < ApplicationController
     end
   end
 
+  def display_fields(property, field_keys)
+    field_keys.each do |key|
+      if property[key].to_i == 1
+        label = t("#{key}")
+        concat "#{label.humanize.titleize}<br>".html_safe
+      end
+    end
+  end
   private
 
     # Use callbacks to share common setup or constraints between actions.
@@ -77,15 +85,15 @@ class PropertiesController < ApplicationController
       :footage => [:area_do_terreno, :area_construida, :area_total],
       :services => [:dormitorio_empregada, :area_servico, :energia_eletrica, :banheiro_empregada],
       :leisure => [:adega, :campo_futebol, :churrasqueira, :piscina, :jardim],
-      :social => [:pet, :escritorio, :sacada, :quartos, :lavabos, :salas, :cozinha, :jardim],
-      :intimate => [:quartos, :suites, :banheiros, :banheira],
+      :social => [:pet, :escritorio, :sacada, :lavabo, :banheira, :cozinha, :jardim],
+      :intimate => [:quartos, :suites, :banheiros, :salas],
       :cabinet => [:area_servico, :banheiro_empregada, :dormitorio_empregada, :lavanderia, :cozinha, :sala, :quarto, :banheiro],
-      :address => [:CEP, :Logradouro, :Número, :Complemento, :Bairro, :Cidade, :Estado],
+      :address => [:CEP, :logradouro, :numero, :complemento, :bairro, :cidade, :estado],
       :floor => [:ardosia, :carpete, :ceramica, :granito, :madeira, :marmore, :porcelanato, :pvc, :taco, :tijolinho, :vinilico],
       :infrastructure => [:ar_condicionado, :deposito, :elevador, :jardim_inverno, :portao_eletronico, :sistema_seguranca, :mobilia, :vagas_cobertas, :vagas_descobertas],
       :finality => [:comercial, :residencial, :rural, :terreno, :temporada, :industrial, :lazer, :outros],
       :category => [:apartamento, :casa, :chacara, :fazenda, :flat, :kitnet, :loja, :sala, :sobrado, :terreno, :outros],
-      :intention => [:venda, :aluguel, :temporada, :permuta, :outros],
+      :intention => [:venda, :aluguel, :temporada],
       :price => [:valor_venda, :condominio, :iptu, :valor_aluguel, :valor_temporada],
       :location => [:latitude, :longitude],
     )

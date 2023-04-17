@@ -2,10 +2,10 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <%= f.label :title %>
+  <%= f.label :titulo %>
   <%= f.text_field :title %>
 
-  <%= f.label :description %>
+  <%= f.label :Sobre_o_imóvel %>
   <%= f.text_area :description %>
 
   <%= f.label :published %>
@@ -13,6 +13,12 @@
 
   <%= f.label :highlighted %>
   <%= f.check_box :highlighted %>
+
+<%= f.fields_for :finality do |ff| %>
+  <%= ff.label :finality %>
+  <%= ff.collection_select :finality %>
+<% end %>
+
 
   <!-- Fields for nested attributes -->
   <%= f.fields_for :footage do |ff| %>
@@ -55,6 +61,159 @@
 
     <%= ff.label :jardim %>
     <%= ff.check_box :jardim %>
+  <% end %>
+
+ <%= f.fields_for :social do |ff| %>
+    <%= ff.label :pet %>
+    <%= ff.check_box :pet %>
+
+    <%= ff.label :escritorio %>
+    <%= ff.check_box :escritorio %>
+
+    <%= ff.label :sacada %>
+    <%= ff.check_box :sacada %>
+
+    <%= ff.label :quartos %>
+    <%= ff.check_box :quartos %>
+
+    <%= ff.label :lavabos %>
+    <%= ff.check_box :lavabos %>
+
+    <%= ff.label :salas %>
+    <%= ff.check_box :salas %>
+
+    <%= ff.label :cozinha %>
+    <%= ff.check_box :cozinha %>
+
+    <%= ff.label :jardim %>
+    <%= ff.check_box :jardim %>
+  <% end %>
+
+  <%= f.fields_for :intimate do |ff| %>
+  <%= ff.label :quartos %>
+  <%= ff.number_field :quartos, step: 1 %>
+
+  <%= ff.label :suites %>
+  <%= ff.number_field :suites, step: 1 %>
+
+  <%= ff.label :banheiros %>
+  <%= ff.number_field :banheiros, step: 1 %>
+
+  <%= ff.label :banheira %>
+  <%= ff.check_box :banheira %>
+<% end %>
+
+<%= f.fields_for :cabinet do |ff| %>
+  <%= ff.label :area_servico %>
+  <%= ff.check_box :area_servico %>
+
+  <%= ff.label :banheiro_empregada %>
+  <%= ff.check_box :banheiro_empregada %>
+
+  <%= ff.label :dormitorio_empregada %>
+  <%= ff.check_box :dormitorio_empregada %>
+
+  <%= ff.label :lavanderia %>
+  <%= ff.check_box :lavanderia %>
+
+  <%= ff.label :cozinha %>
+  <%= ff.check_box :cozinha %>
+
+  <%= ff.label :sala %>
+  <%= ff.check_box :sala %>
+
+  <%= ff.label :quarto %>
+  <%= ff.check_box :quarto %>
+
+  <%= ff.label :banheiro %>
+  <%= ff.check_box :banheiro %>
+<% end %>
+
+<%= f.simple_fields_for :address do |ff| %>
+  <%= ff.label :CEP %>
+  <%= ff.number_field :CEP %>
+
+  <%= ff.label :Logradouro %>
+  <%= ff.input :logradouro %>
+
+  <%= ff.label :Número %>
+  <%= ff.number_field :numero %>
+
+  <%= ff.label :Complemento %>
+  <%= ff.input :complemento %>
+
+  <%= ff.label :Bairro %>
+  <%= ff.input :bairro %>
+
+  <%= ff.label :Cidade %>
+  <%= ff.input :cidade %>
+
+  <%= ff.label :Estado %>
+  <%= ff.input :estado %>
+  <% end %>
+  <%= f.fields_for :floor do |ff| %>
+    <%= ff.label :ardosia %>
+    <%= ff.check_box :slate %>
+
+    <%= ff.label :carpete %>
+    <%= ff.check_box :carpet %>
+
+    <%= ff.label :ceramica %>
+    <%= ff.check_box :ceramic %>
+
+    <%= ff.label :granito %>
+    <%= ff.check_box :granite %>
+
+    <%= ff.label :madeira %>
+    <%= ff.check_box :wood %>
+
+    <%= ff.label :marmore %>
+    <%= ff.check_box :marble %>
+
+    <%= ff.label :porcelanato %>
+    <%= ff.check_box :porcelain %>
+
+    <%= ff.label :pvc %>
+    <%= ff.check_box :pvc %>
+
+    <%= ff.label :taco %>
+    <%= ff.check_box :taco %>
+
+    <%= ff.label :tijolinho %>
+    <%= ff.check_box :brick %>
+
+    <%= ff.label :vinilico %>
+    <%= ff.check_box :vinyl %>
+  <% end %>
+
+  <!-- Fields for infrastructure -->
+  <%= f.fields_for :infrastructure do |ff| %>
+    <%= ff.label :ar_condicionado %>
+    <%= ff.check_box :ar_condicionado %>
+
+    <%= ff.label :deposito %>
+    <%= ff.check_box :deposito %>
+
+    <%= ff.label :elevador %>
+    <%= ff.check_box :elevador %>
+
+    <%= ff.label :jardim_inverno %>
+    <%= ff.check_box :jardim_inverno %>
+
+    <%= ff.label :portao_eletronico %>
+    <%= ff.check_box :portao_eletronico %>
+
+    <%= ff.label :sistema_seguranca %>
+    <%= ff.check_box :sistema_seguranca %>
+
+    <%= ff.label :mobilia %>
+    <%= ff.check_box :mobilia %>
+
+    <%= ff.label :vagas_cobertas %>
+    <%= ff.number_field :vagas_cobertas %>
+
+    <%= ff.label :vagas_descobertas %>
+    <%= ff.number_field :vagas_descobertas %>
   <% end %>
 
   <%= f.submit %>

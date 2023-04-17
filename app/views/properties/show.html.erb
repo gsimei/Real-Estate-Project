@@ -1,8 +1,113 @@
-<p style="color: green"><%= notice %></p>
+<%# <p style="color: green">= notice</p> %>
 
-<%= render @property %>
+<%#= render @property %>
 
-<div>
+<%# <div> %>
+
+<h1><%= @property.title %></h1>
+<p><%= @property.description %></p>
+<% @property.footage.each do |key, value| %>
+  <p><%= t("#{key}") %>: <%= number_with_precision(value.to_f, precision: 2) %><br></p>
+<% end %>
+<% area_total =  @property.footage['area_do_terreno'].to_f + @property.footage['area_construida'].to_f  %>
+<p>Area Total = <%= number_with_precision(area_total, precision: 2) %></p>
+<% @property.services.each do |key, value| %>
+  <% if value == "1" %>
+    <%= t("#{key}") %><br>
+  <% end %>
+<% end %>
+<br>
+<% @property.leisure.each do |key, value| %>
+  <% if value == "1" %>
+    <%= t("#{key}") %>
+  <% end %>
+<% end %>
+<br>
+<% if @property.social.present? %>
+  <% @property.social.each do |key, value| %>
+    <% if value == "1" %>
+      <%= t("#{key}") %>
+    <% end %>
+  <% end %>
+<% end %>
+<br>
+<% if @property.intimate.present? %>
+  <% @property.intimate.each do |key, value| %>
+    <% if value == "1" %>
+      <%= t("#{key}") %>
+    <% end %>
+  <% end %>
+<% end %>
+<br>
+<% if @property.services.present? %>
+  <% @property.services.each do |key, value| %>
+    <% if value == "1" %>
+      <%= t("#{key}") %>
+    <% end %>
+  <% end %>
+<% end %>
+<br>
+<% if @property.cabinet.present? %>
+  <% @property.cabinet.each do |key, value| %>
+    <% if value == "1" %>
+      <%= t("#{key}") %>
+    <% end %>
+  <% end %>
+<% end %>
+<br>
+<% if @property.floor.present? %>
+  <% @property.floor.each do |key, value| %>
+    <% if value == "1" %>
+      <%= t("#{key}") %>
+    <% end %>
+  <% end %>
+<% end %>
+<br>
+<% if @property.infrastructure.present? %>
+  <% @property.infrastructure.each do |key, value| %>
+    <% if value == "1" %>
+      <%= t("#{key}") %>
+    <% end %>
+  <% end %>
+<% end %>
+<br>
+<% if @property.finality.present? %>
+  <% @property.finality.each do |key, value| %>
+    <% if value == "1" %>
+      <%= t("#{key}") %>
+    <% end %>
+  <% end %>
+<% end %>
+<br>
+<% if @property.category.present? %>
+  <% @property.category.each do |key, value| %>
+    <% if value == "1" %>
+      <%= t("#{key}") %>
+    <% end %>
+  <% end %>
+<% end %>
+<br>
+<% if @property.intention.present? %>
+  <% @property.intention.each do |key, value| %>
+    <% if value == "1" %>
+      <%= t("#{key}") %>
+    <% end %>
+  <% end %>
+<% end %>
+<br>
+<% if @property.intention.present? %>
+  <% if @property.intention[:venda] == "1" %>
+    <strong>Preço:</strong>
+    <%= number_to_currency(@property.price[:valor_venda], unit: "R$", precision: 2) %>
+  <% else %>
+    <strong>Preço de aluguel:</strong>
+    <%= number_to_currency(@property.price[:valor_aluguel], unit: "R$", precision: 2) %>
+    <strong>Condomínio:</strong>
+    <%= number_to_currency(@property.price[:condominio], unit: "R$", precision: 2) %>
+    <strong>IPTU:</strong>
+    <%= number_to_currency(@property.price[:iptu], unit: "R$", precision: 2) %>
+  <% end %>
+<% end %>
   <%= link_to "Edit this property", edit_property_path(@property) %> |
   <%= link_to "Back to properties", properties_path %>
 

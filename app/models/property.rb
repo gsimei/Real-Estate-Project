@@ -1,6 +1,15 @@
 class Property < ApplicationRecord
   belongs_to :user
-
+  FINALITIES = {
+    comercial: "Comercial",
+    residencial: "Residencial",
+    rural: "Rural",
+    terreno: "Terreno",
+    temporada: "Temporada",
+    industrial: "Industrial",
+    lazer: "Lazer",
+    outros: "Outros"
+  }
   # serialize :footage, JSON
   # serialize :services, JSON
   # serialize :leisure, JSON

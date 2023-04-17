@@ -1,7 +1,105 @@
 pt:
-  activerecord:
-    attributes:
-      property:
-        footage:
-          area_do_terreno: "Área do Terreno"
-          area_construida: "Área Construída"
+  footage: "Área"
+  area_do_terreno: "Área do Terreno"
+  area_construida: "Área Construída"
+  area_total: "Área Total"
+  services: "Serviços"
+  dormitorio_empregada: Dormitório de Empregada
+  area_servico: Área de Serviço
+  energia_eletrica: Energia Elétrica
+  banheiro_empregada: Banheiro de Empregada
+  leisure: "Lazer"
+  adega: Adega
+  campo_futebol: Campo de Futebol
+  churrasqueira: Churrasqueira
+  piscina: Piscina
+  jardim: Jardim
+  social: "Social"
+  pet: Pet
+  escritorio: Escritório
+  sacada: Sacada
+  quartos: Quartos
+  lavabos: Lavabos
+  salas: Salas
+  cozinha: Cozinha
+  jardim: Jardim
+  intimate: "Intimo"
+  quartos: Quartos
+  suites: Suítes
+  banheiros: Banheiros
+  banheira: Banheira
+  cabinet: "Armarios"
+  area_servico: Área de Serviço
+  banheiro_empregada: Banheiro de Empregada
+  dormitorio_empregada: Dormitório de Empregada
+  lavanderia: Lavanderia
+  cozinha: Cozinha
+  sala: Sala
+  quarto: Quarto
+  banheiro: Banheiro
+  address: "Endereço"
+  CEP: CEP
+  logradouro: Logradouro
+  numero: Número
+  complemento: Complemento
+  bairro: Bairro
+  cidade: Cidade
+  estado: Estado
+  floor: "Piso"
+  ardosia: "Ardósia"
+  carpete: "Carpete"
+  ceramica: "Cerâmica"
+  granito: "Granito"
+  madeira: "Madeira"
+  marmore: "Mármore"
+  porcelanato: "Porcelanato"
+  pvc: "PVC"
+  taco: "Taco"
+  tijolinho: "Tijolinho"
+  vinilico: "Vinílico"
+  infrastructure: "Infraestrutura"
+  ar_condicionado: "Ar Condicionado"
+  deposito: "Depósito"
+  elevador: "Elevador"
+  jardim_inverno: "Jardim de Inverno"
+  portao_eletronico: "Portão Eletrônico"
+  sistema_seguranca: "Sistema de Segurança"
+  mobilia: "Mobília"
+  vagas_cobertas: "Vagas Cobertas"
+  vagas_descobertas: "Vagas Descobertas"
+  finality: "Finalidade"
+  comercial: "Comercial"
+  residencial: "Residencial"
+  rural: "Rural"
+  terreno: "Terreno"
+  temporada: "Temporada"
+  industrial: "Industrial"
+  lazer: "Lazer"
+  outros: "Outros"
+  category: "Categoria"
+  apartamento: Apartamento
+  casa: Casa
+  chacara: Chácara
+  fazenda: Fazenda
+  flat: Flat
+  kitnet: Kitnet
+  loja: Loja
+  sala: Sala
+  sobrado: Sobrado
+  terreno: Terreno
+  outros: Outros
+  intention: "Intenção"
+  venda: Venda
+  aluguel: Aluguel
+  temporada: Temporada
+  permuta: Permuta
+  outros: Outros
+  price: "Preço"
+  valor_venda: Valor de Venda
+  condominio: Condomínio
+  iptu: IPTU
+  valor_aluguel: Valor de Aluguel
+  valor_temporada: Valor de Temporada
+  location: "Localização"
+  latitude: Latitude
+  longitude: Longitude

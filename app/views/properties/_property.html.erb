@@ -20,7 +20,6 @@
   <% area_total =  property.footage['area_do_terreno'].to_f + property.footage['area_construida'].to_f  %>
    Area Total = <%= area_total %>
   </p>
-<%= t("hello") %>
   <p>
     <strong>Services:</strong>
     <%= property.services %>
@@ -68,7 +67,7 @@
   </p>
 <strong>Footage:</strong>
 <% property.footage.each do |key, value| %>
-  <%= t("activerecord.attributes.property.footage.#{key}") %>: <%= value.to_f %><br>
+  <%= t("#{key}") %>: <%= value.to_f %><br>
 <% end %>
 
   <p>
