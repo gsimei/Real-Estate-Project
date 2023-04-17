@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_16_160245) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_16_233925) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,7 +31,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_16_160245) do
     t.json "intimate"
     t.json "cabinet"
     t.json "address"
-    t.json "primary_date"
     t.json "floor"
     t.json "infrastructure"
     t.json "finality"
@@ -44,6 +43,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_16_160245) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
+    t.text "description"
     t.index ["user_id"], name: "index_properties_on_user_id"
   end
 

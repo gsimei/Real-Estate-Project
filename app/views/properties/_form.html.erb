@@ -2,59 +2,60 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-<div class="form-inputs">
-  <h1>Metragem</h1>
-  <div class="form-group">
-    <%= f.label :footage, class: "control-label col-md-5" %>
-    <div class="col-md-9">
-      <% @property.footage.each do |key, value| %>
-        <div class="form-group">
-          <%= label_tag key %>
-          <%= number_field_tag key, "", class: "form-control", type: "number", step: "0.01" %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-  <h1>Endereco</h1>
-  <div class="form-group">
-    <%= f.label :address, class: "control-label col-md-5" %>
-    <div class="col-md-9">
-      <% @property.address.each do |key, value| %>
-        <div class="form-group">
-          <%= label_tag key %>
-          <%= text_field_tag key, "", class: "form-control" %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-  <h1>Servicos</h1>
-  <div class="form-group">
-    <%= f.label :services, class: "control-label col-md-5" %>
-    <div class="col-md-9">
-      <% @property.services.each do |key, value| %>
-        <div class="checkbox">
-          <%= label_tag key %>
-          <%= check_box_tag "property[services][#{key}]", true %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-  <h1>Lazer</h1>
-  <div class="form-group">
-    <%= f.label :leisure, class: "control-label col-md-5" %>
-    <div class="col-md-9">
-      <% @property.leisure.each do |key, value| %>
-        <div class="checkbox">
-          <%= label_tag key %>
-          <%= check_box_tag "property[leisure][#{key}]", true %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-</div>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
 
+  <%= f.label :description %>
+  <%= f.text_area :description %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+  <%= f.label :published %>
+  <%= f.check_box :published %>
+
+  <%= f.label :highlighted %>
+  <%= f.check_box :highlighted %>
+
+  <!-- Fields for nested attributes -->
+  <%= f.fields_for :footage do |ff| %>
+    <%= ff.label :area_do_terreno %>
+    <%= ff.number_field :area_do_terreno, step: 0.01 %>
+
+    <%= ff.label :area_construida %>
+    <%= ff.number_field :area_construida, step: 0.01 %>
+
+    <%#= ff.label :area_total %>
+    <%#= ff.number_field :area_total, step: 0.01 %>
+  <% end %>
+
+  <%= f.fields_for :services do |ff| %>
+    <%= ff.label :dormitorio_empregada %>
+    <%= ff.check_box :dormitorio_empregada %>
+
+    <%= ff.label :area_servico %>
+    <%= ff.check_box :area_servico %>
+
+    <%= ff.label :energia_eletrica %>
+    <%= ff.check_box :energia_eletrica %>
+
+    <%= ff.label :banheiro_empregada %>
+    <%= ff.check_box :banheiro_empregada %>
+  <% end %>
+
+  <%= f.fields_for :leisure do |ff| %>
+    <%= ff.label :adega %>
+    <%= ff.check_box :adega %>
+
+    <%= ff.label :campo_futebol %>
+    <%= ff.check_box :campo_futebol %>
+
+    <%= ff.label :churrasqueira %>
+    <%= ff.check_box :churrasqueira %>
+
+    <%= ff.label :piscina %>
+    <%= ff.check_box :piscina %>
+
+    <%= ff.label :jardim %>
+    <%= ff.check_box :jardim %>
+  <% end %>
+
+  <%= f.submit %>
 <% end %>

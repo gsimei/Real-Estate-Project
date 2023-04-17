@@ -1,7 +1,20 @@
 <div id="<%= dom_id property %>">
+<p>
+    <strong>title:</strong>
+    <%= property.title %>
+  </p>
+ <p>
+    <strong>Descricao:</strong>
+    <%= property.description %>
+  </p>
   <p>
-    <strong>Footage:</strong>
-    <%= property.footage %>
+ <strong>Footage:</strong>
+<%= property.footage %><br>
+
+<strong>Footage:</strong>
+<% property.footage.each do |key, value| %>
+  <%= key %>: <%= value.to_f %><br>
+<% end %>
   </p>
 
   <p>
@@ -32,11 +45,6 @@
   <p>
     <strong>Address:</strong>
     <%= property.address %>
-  </p>
-
-  <p>
-    <strong>Primary date:</strong>
-    <%= property.primary_date %>
   </p>
 
   <p>
