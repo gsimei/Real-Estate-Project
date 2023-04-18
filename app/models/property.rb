@@ -1,41 +1,35 @@
 class Property < ApplicationRecord
   belongs_to :user
-  FINALITIES = {
-    comercial: "Comercial",
-    residencial: "Residencial",
-    rural: "Rural",
-    terreno: "Terreno",
-    temporada: "Temporada",
-    industrial: "Industrial",
-    lazer: "Lazer",
-    outros: "Outros"
-  }
-  # serialize :footage, JSON
-  # serialize :services, JSON
-  # serialize :leisure, JSON
-  # serialize :social, JSON
-  # serialize :intimate, JSON
-  # serialize :cabinet, JSON
-  # serialize :address, JSON
-  # serialize :floor, JSON
-  # serialize :infrastructure, JSON
-  # serialize :finality, JSON
-  # serialize :category, JSON
-  # serialize :intention, JSON
-  # serialize :price, JSON
-  # serialize :location, JSON
-  # attribute :footage, :json, default: { 'Área do terreno': 0.00, 'Área construída': 0.00, 'Área privativa': 0.00, 'Área total': 0.00 }
-  # attribute :services, :json, default: { 'Água': false, 'Esgoto': false, 'Energia elétrica': false, 'Gás': false, 'Internet': false, 'Telefone': false }
-  # attribute :leisure, :json, default: { 'Academia': false, 'Bicicletário': false, 'Brinquedoteca': false, 'Churrasqueira': false, 'Cinema': false, 'Espaço gourmet': false, 'Espaço kids': false, 'Espaço pet': false, 'Espaço zen': false, 'Fitness': false, 'Forno de pizza': false, 'Forno de pão': false, 'Jardim': false, 'Lareira': false, 'Lavanderia coletiva': false, 'Lavanderia privativa': false, 'Lavabo': false, 'Piscina': false, 'Piscina infantil': false, 'Piscina aquecida': false, 'Playground': false, 'Quadra de esportes': false, 'Quadra poliesportiva': false, 'Quadra de tênis': false, 'Salão de festas': false, 'Salão de jogos': false, 'Sauna': false, 'Spa': false, 'Vestiário': false }
-  # attribute :social, :json, default: { 'Área de convivência': false, 'Bicicletário': false, 'Brinquedoteca': false, 'Churrasqueira': false, 'Cinema': false, 'Espaço gourmet': false, 'Espaço kids': false, 'Espaço pet': false, 'Espaço zen': false, 'Fitness': false, 'Forno de pizza': false, 'Forno de pão': false, 'Jardim': false, 'Lareira': false, 'Lavanderia coletiva': false, 'Lavanderia privativa': false, 'Lavabo': false, 'Piscina': false, 'Piscina infantil': false, 'Piscina aquecida': false, 'Playground': false, 'Quadra de esportes': false, 'Quadra poliesportiva': false, 'Quadra de tênis': false, 'Salão de festas': false, 'Salão de jogos': false, 'Sauna': false, 'Spa': false, 'Vestiário': false }
-  # attribute :intimate, :json, default: { 'Área de convivência': false, 'Bicicletário': false, 'Brinquedoteca': false, 'Churrasqueira': false, 'Cinema': false, 'Espaço gourmet': false, 'Espaço kids': false, 'Espaço pet': false, 'Espaço zen': false, 'Fitness': false, 'Forno de pizza': false, 'Forno de pão': false, 'Jardim': false, 'Lareira': false, 'Lavanderia coletiva': false, 'Lavanderia privativa': false, 'Lavabo': false, 'Piscina': false, 'Piscina infantil': false, 'Piscina aquecida': false, 'Playground': false, 'Quadra de esportes': false, 'Quadra poliesportiva': false, 'Quadra de tênis': false, 'Salão de festas': false, 'Salão de jogos': false, 'Sauna': false, 'Spa': false, 'Vestiário': false }
-  # attribute :cabinet, :json, default: { 'Armário de cozinha': false, 'Armário embutido': false, 'Armário na cozinha': false, 'Armário no banheiro': false, 'Armário no quarto': false, 'Armário na sala': false, 'Armário na suíte': false, 'Armário na área de serviço': false, 'Armário na varanda': false, 'Armário na lavanderia': false, 'Armário na garagem': false, 'Armário no escritório': false, 'Armário no hall': false, 'Armário no corredor': false, 'Armário no hall de entrada': false, 'Armário no hall de serviço': false, 'Armário no hall de elevador': false, 'Armário no hall de circulação': false, }
-  # attribute :floor, :json, default: { 'Ardosia': false, 'Carpete': false, 'Granito': false, 'Laminado': false, 'Mármore': false, 'Porcelanato': false, 'Tábua': false, 'Taco': false, 'Vinílico': false, 'Carpete de acrílico': false, 'Cerâmica': false, 'Cimento queimado': false, 'Contrapiso': false, }
-  # attribute :infrastructure, :json, default: { 'Ar condicionado': false, 'Depósito': false, 'Elevador': false, 'Jardim de inverno': false, 'Mobiliado': false, 'Mezanino': false, 'Nº de andares': 0.00, 'Pé direito duplo': false, 'Terraço': false, 'Vagas cobertas': 0.00, 'Vagas descobertas': 0.00 }
-  # attribute :address, :json, default: { 'CEP': 0.00, 'Logradouro': "", 'Número': 0.00, 'Complemento': "", 'Bairro': "", 'Cidade': "", 'Estado': "" }
-  # attribute :location, :json, default: { 'Latitude': 0.00, 'Longitude': 0.00 }
-  # attribute :price, :json, default: { 'Valor de venda': 0.00, 'Valor de locação': 0.00, 'Valor do condomínio': 0.00, 'Valor do IPTU': 0.00 }
-  # attribute :finality, :json, default: { 'Venda': false, 'Locação': false }
-  # attribute :intention, :json, default: { 'Comercial': false, 'Residencial': false, 'Industrial': false, 'Rural': false }
-  # attribute :category, :json, default: { 'Apartamento': false, 'Casa': false, 'Casa de condomínio': false, 'Casa de vila': false, 'Cobertura': false, 'Flat': false, 'Loft': false, 'Sobrado': false, 'Terreno': false, 'Chácara': false, 'Fazenda': false, 'Sítio': false, 'Galpão': false, 'Sala': false, 'Prédio': false, 'Ponto comercial': false, 'Kitnet': false, 'Studio': false, 'Lote': false, 'Área': false }
+
+  attribute :footage, :json, default: { area_do_terreno: nil, area_construida: nil, area_total: nil }
+  attribute :services, :json, default: { dormitorio_empregada: false, area_servico: false, energia_eletrica: false, banheiro_empregada: false }
+  attribute :leisure, :json, default: { adega: false, campo_futebol: false, churrasqueira: false, piscina: false, jardim: false }
+  attribute :social, :json, default: { pet: false, escritorio: false, sacada: false, lavabo: false, banheira: false, cozinha: false, jardim: false }
+  attribute :intimate, :json, default: { quartos: nil, suites: nil, banheiros: nil, salas: nil }
+  attribute :cabinet, :json, default: { area_servico: false, banheiro_empregada: false, dormitorio_empregada: false, lavanderia: false, cozinha: false, sala: false, quarto: false, banheiro: false }
+  attribute :address, :json, default: { CEP: nil, logradouro: nil, numero: nil, complemento: nil, bairro: nil, cidade: nil, estado: nil}
+  attribute :floor, :json, default: { ardosia: false, carpete: false, ceramica: false, granito: false, madeira: false, marmore: false, porcelanato: false, pvc: false, taco: false, tijolinho: false, vinilico: false }
+  attribute :infrastructure, :json, default: { ar_condicionado: false, deposito: false, elevador: false, jardim_inverno: false, portao_eletronico: false, sistema_seguranca: false, mobilia: false, vagas_cobertas: nil, vagas_descobertas: nil }
+  attribute :finality, :json, default: { comercial: false, residencial: false, rural: false, terreno: false, temporada: false, industrial: false, lazer: false, outros: false }
+  attribute :category, :json, default: { apartamento: false, casa: false, chacara: false, fazenda: false, flat: false, kitnet: false, loja: false, sala: false, sobrado: false, terreno: false, outros: false }
+  attribute :intention, :json, default: { venda: false, aluguel: false, temporada: false }
+  attribute :price, :json, default: { valor_venda: nil, condominio: nil, iptu: nil, valor_aluguel: nil, valor_temporada: nil }
+  attribute :location, :json, default: { latitude: nil, longitude: nil }
+  # attribute :published, :boolean, default: false
+  # attributes :highlighted, :boolean, default: false
+
+  # store_accessor :footage, :area_do_terreno, :area_construida, :area_total
+  # store_accessor :services, :dormitorio_empregada, :area_servico, :energia_eletrica, :banheiro_empregada
+  # store_accessor :leisure, :adega, :campo_futebol, :churrasqueira, :piscina, :jardim
+  # store_accessor :social, :pet, :escritorio, :sacada, :lavabo, :banheira, :cozinha, :jardim
+  # store_accessor :intimate, :quartos, :suites, :banheiros, :salas
+  # store_accessor :cabinet, :area_servico, :banheiro_empregada, :dormitorio_empregada, :lavanderia, :cozinha, :sala, :quarto, :banheiro
+  # store_accessor :address, :CEP, :logradouro, :numero, :complemento, :bairro, :cidade, :estado
+  # store_accessor :floor, :ardosia, :carpete, :ceramica, :granito, :madeira, :marmore, :porcelanato, :pvc, :taco, :tijolinho, :vinilico
+  # store_accessor :infrastructure, :ar_condicionado, :deposito, :elevador, :jardim_inverno, :portao_eletronico, :sistema_seguranca, :mobilia, :vagas_cobertas, :vagas_descobertas
+  # store_accessor :finality, :comercial, :residencial, :rural, :terreno, :temporada, :industrial, :lazer, :outros
+  # store_accessor :category, :apartamento, :casa, :chacara, :fazenda, :flat, :kitnet, :loja, :sala, :sobrado, :terreno, :outros
+  # store_accessor :intention, :venda, :aluguel, :temporada
+  # store_accessor :price, :valor_venda, :condominio, :iptu, :valor_aluguel, :valor_temporada
+  # store_accessor :location, :latitude, :longitude
 end

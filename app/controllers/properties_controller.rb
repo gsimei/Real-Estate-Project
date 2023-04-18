@@ -1,26 +1,20 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: %i[show edit update destroy]
 
-  # GET /properties or /properties.json
   def index
     @properties = Property.all
   end
 
-  # GET /properties/1 or /properties/1.json
   def show
   end
 
-  # GET /properties/new
   def new
     @property = Property.new
-
   end
 
-  # GET /properties/1/edit
   def edit
   end
 
-  # POST /properties or /properties.json
   def create
     @property = Property.new(property_params)
     @property.user = current_user
@@ -36,7 +30,6 @@ class PropertiesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /properties/1 or /properties/1.json
   def update
     respond_to do |format|
       if @property.update(property_params)
@@ -49,7 +42,6 @@ class PropertiesController < ApplicationController
     end
   end
 
-  # DELETE /properties/1 or /properties/1.json
   def destroy
     @property.destroy
 
@@ -59,22 +51,12 @@ class PropertiesController < ApplicationController
     end
   end
 
-  def display_fields(property, field_keys)
-    field_keys.each do |key|
-      if property[key].to_i == 1
-        label = t("#{key}")
-        concat "#{label.humanize.titleize}<br>".html_safe
-      end
-    end
-  end
   private
 
-    # Use callbacks to share common setup or constraints between actions.
   def set_property
     @property = Property.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def property_params
     params.require(:property).permit(
       :title,
@@ -82,22 +64,20 @@ class PropertiesController < ApplicationController
       :published,
       :highlighted,
       :user_id,
-      :footage => [:area_do_terreno, :area_construida, :area_total],
-      :services => [:dormitorio_empregada, :area_servico, :energia_eletrica, :banheiro_empregada],
-      :leisure => [:adega, :campo_futebol, :churrasqueira, :piscina, :jardim],
-      :social => [:pet, :escritorio, :sacada, :lavabo, :banheira, :cozinha, :jardim],
-      :intimate => [:quartos, :suites, :banheiros, :salas],
-      :cabinet => [:area_servico, :banheiro_empregada, :dormitorio_empregada, :lavanderia, :cozinha, :sala, :quarto, :banheiro],
-      :address => [:CEP, :logradouro, :numero, :complemento, :bairro, :cidade, :estado],
-      :floor => [:ardosia, :carpete, :ceramica, :granito, :madeira, :marmore, :porcelanato, :pvc, :taco, :tijolinho, :vinilico],
-      :infrastructure => [:ar_condicionado, :deposito, :elevador, :jardim_inverno, :portao_eletronico, :sistema_seguranca, :mobilia, :vagas_cobertas, :vagas_descobertas],
-      :finality => [:comercial, :residencial, :rural, :terreno, :temporada, :industrial, :lazer, :outros],
-      :category => [:apartamento, :casa, :chacara, :fazenda, :flat, :kitnet, :loja, :sala, :sobrado, :terreno, :outros],
-      :intention => [:venda, :aluguel, :temporada],
-      :price => [:valor_venda, :condominio, :iptu, :valor_aluguel, :valor_temporada],
-      :location => [:latitude, :longitude],
+      footage: %i[area_do_terreno area_construida area_total],
+      services: %i[dormitorio_empregada area_servico energia_eletrica banheiro_empregada],
+      leisure: %i[adega campo_futebol churrasqueira piscina jardim],
+      social: %i[pet escritorio sacada lavabo banheira cozinha jardim],
+      intimate: %i[quartos suites banheiros salas],
+      cabinet: %i[area_servico banheiro_empregada dormitorio_empregada lavanderia cozinha sala quarto banheiro],
+      address: %i[CEP logradouro numero complemento bairro cidade estado],
+      floor: %i[ardosia carpete ceramica granito madeira marmore porcelanato pvc taco tijolinho vinilico],
+      infrastructure: %i[ar_condicionado deposito elevador jardim_inverno portao_eletronico sistema_seguranca mobilia vagas_cobertas vagas_descobertas],
+      finality: %i[comercial residencial rural terreno temporada industrial lazer outros],
+      category: %i[apartamento casa chacara fazenda flat kitnet loja sala sobrado terreno],
+      intention: %i[venda aluguel temporada],
+      price: %i[valor_venda condominio iptu valor_aluguel valor_temporada],
+      location: %i[latitude longitude]
     )
   end
 end
-# params.require(:property).permit(footage: {}, services: {}, leisure: {}, social: {}, intimate: {}, cabinet: {}, address: {}, primary_date: {}, floor: {}, infrastructure: {}, finality: {}, category: {}, intention: {}, price: {}, location: {}, :published :highlighted, :user_id)
-# params.require(:property).permit(:footage => {}, :services => {}, :leisure, :social, :intimate, :cabinet, :address, :primary_date, :floor, :infrastructure, :finality, :category, :intention, :price, :location, :published, :highlighted, :user_id)

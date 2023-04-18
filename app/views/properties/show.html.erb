@@ -9,23 +9,27 @@
 <% @property.footage.each do |key, value| %>
   <p><%= t("#{key}") %>: <%= number_with_precision(value.to_f, precision: 2) %><br></p>
 <% end %>
+<i class="fa-solid fa-ruler-combined"></i>
+<i class="fa-solid fa-shower"></i>
+<i class="fa-solid fa-bath"></i>
+<i class="fa-solid fa-bed"></i>
 <% area_total =  @property.footage['area_do_terreno'].to_f + @property.footage['area_construida'].to_f  %>
 <p>Area Total = <%= number_with_precision(area_total, precision: 2) %></p>
 <% @property.services.each do |key, value| %>
-  <% if value == "1" %>
+  <% if value == true %>
     <%= t("#{key}") %><br>
   <% end %>
 <% end %>
 <br>
 <% @property.leisure.each do |key, value| %>
-  <% if value == "1" %>
+  <% if value == true %>
     <%= t("#{key}") %>
   <% end %>
 <% end %>
 <br>
 <% if @property.social.present? %>
   <% @property.social.each do |key, value| %>
-    <% if value == "1" %>
+    <% if value == true %>
       <%= t("#{key}") %>
     <% end %>
   <% end %>
@@ -33,7 +37,7 @@
 <br>
 <% if @property.intimate.present? %>
   <% @property.intimate.each do |key, value| %>
-    <% if value == "1" %>
+    <% if value == true %>
       <%= t("#{key}") %>
     <% end %>
   <% end %>
@@ -41,7 +45,7 @@
 <br>
 <% if @property.services.present? %>
   <% @property.services.each do |key, value| %>
-    <% if value == "1" %>
+    <% if value == true %>
       <%= t("#{key}") %>
     <% end %>
   <% end %>
@@ -49,7 +53,7 @@
 <br>
 <% if @property.cabinet.present? %>
   <% @property.cabinet.each do |key, value| %>
-    <% if value == "1" %>
+    <% if value == true %>
       <%= t("#{key}") %>
     <% end %>
   <% end %>
@@ -57,7 +61,7 @@
 <br>
 <% if @property.floor.present? %>
   <% @property.floor.each do |key, value| %>
-    <% if value == "1" %>
+    <% if value == true %>
       <%= t("#{key}") %>
     <% end %>
   <% end %>
@@ -65,7 +69,7 @@
 <br>
 <% if @property.infrastructure.present? %>
   <% @property.infrastructure.each do |key, value| %>
-    <% if value == "1" %>
+    <% if value == true %>
       <%= t("#{key}") %>
     <% end %>
   <% end %>
@@ -73,7 +77,7 @@
 <br>
 <% if @property.finality.present? %>
   <% @property.finality.each do |key, value| %>
-    <% if value == "1" %>
+    <% if value == true %>
       <%= t("#{key}") %>
     <% end %>
   <% end %>
@@ -81,7 +85,7 @@
 <br>
 <% if @property.category.present? %>
   <% @property.category.each do |key, value| %>
-    <% if value == "1" %>
+    <% if value == true %>
       <%= t("#{key}") %>
     <% end %>
   <% end %>
@@ -89,7 +93,7 @@
 <br>
 <% if @property.intention.present? %>
   <% @property.intention.each do |key, value| %>
-    <% if value == "1" %>
+    <% if value == true %>
       <%= t("#{key}") %>
     <% end %>
   <% end %>
