@@ -18,6 +18,7 @@ class PropertiesController < ApplicationController
   def create
     @property = Property.new(property_params)
     @property.user = current_user
+    # @property.fill_address_with_cep
 
     respond_to do |format|
       if @property.save
@@ -31,6 +32,8 @@ class PropertiesController < ApplicationController
   end
 
   def update
+    # @property.fill_address_with_cep
+
     respond_to do |format|
       if @property.update(property_params)
         format.html { redirect_to @property, notice: 'Property was successfully updated.' }
@@ -64,20 +67,34 @@ class PropertiesController < ApplicationController
       :published,
       :highlighted,
       :user_id,
-      footage: %i[area_do_terreno area_construida area_total],
-      services: %i[dormitorio_empregada area_servico energia_eletrica banheiro_empregada],
-      leisure: %i[adega campo_futebol churrasqueira piscina jardim],
-      social: %i[pet escritorio sacada lavabo banheira cozinha jardim],
-      intimate: %i[quartos suites banheiros salas],
-      cabinet: %i[area_servico banheiro_empregada dormitorio_empregada lavanderia cozinha sala quarto banheiro],
-      address: %i[CEP logradouro numero complemento bairro cidade estado],
-      floor: %i[ardosia carpete ceramica granito madeira marmore porcelanato pvc taco tijolinho vinilico],
-      infrastructure: %i[ar_condicionado deposito elevador jardim_inverno portao_eletronico sistema_seguranca mobilia vagas_cobertas vagas_descobertas],
-      finality: %i[comercial residencial rural terreno temporada industrial lazer outros],
-      category: %i[apartamento casa chacara fazenda flat kitnet loja sala sobrado terreno],
-      intention: %i[venda aluguel temporada],
-      price: %i[valor_venda condominio iptu valor_aluguel valor_temporada],
-      location: %i[latitude longitude]
+      :area_do_terreno, :area_construida, :area_total,
+      :dormitorio_empregada, :area_servico, :energia_eletrica, :banheiro_empregada,
+      :adega, :campo_futebol, :churrasqueira, :piscina, :jardim,
+      :pet, :escritorio, :sacada, :lavabo, :banheira, :cozinha, :jardim,
+      :quartos, :suites, :banheiros, :salas,
+      :area_servico, :banheiro_empregada, :dormitorio_empregada, :lavanderia, :cozinha, :sala, :quarto, :banheiro,
+      :CEP, :logradouro, :numero, :complemento, :bairro, :cidade, :estado,
+      :floor, :ardosia, :carpete, :ceramica, :granito, :madeira, :marmore, :porcelanato, :pvc, :taco, :tijolinho, :vinilico,
+      :ar_condicionado, :deposito, :elevador, :jardim_inverno, :portao_eletronico, :sistema_seguranca, :mobilia, :vagas_cobertas, :vagas_descobertas,
+      :comercial, :residencial, :rural, :terreno, :temporada, :industrial, :lazer, :outros,
+      :apartamento, :casa, :chacara, :fazenda, :flat, :kitnet, :loja, :sala, :sobrado, :terreno, :outros,
+      :venda, :aluguel, :temporada,
+      :valor_venda, :condominio, :iptu, :valor_aluguel, :valor_temporada,
+      :latitude, :longitude
     )
   end
 end
+# footage: %i[area_do_terreno area_construida area_total],
+# services: %i[dormitorio_empregada area_servico energia_eletrica banheiro_empregada],
+# leisure: %i[adega campo_futebol churrasqueira piscina jardim],
+# social: %i[pet escritorio sacada lavabo banheira cozinha jardim],
+# intimate: %i[quartos suites banheiros salas],
+# cabinet: %i[area_servico banheiro_empregada dormitorio_empregada lavanderia cozinha sala quarto banheiro],
+# address: %i[CEP logradouro numero complemento bairro cidade estado],
+# floor: %i[ardosia carpete ceramica granito madeira marmore porcelanato pvc taco tijolinho vinilico],
+# infrastructure: %i[ar_condicionado deposito elevador jardim_inverno portao_eletronico sistema_seguranca mobilia vagas_cobertas vagas_descobertas],
+# finality: %i[comercial residencial rural terreno temporada industrial lazer outros],
+# category: %i[apartamento casa chacara fazenda flat kitnet loja sala sobrado terreno],
+# intention: %i[venda aluguel temporada],
+# price: %i[valor_venda condominio iptu valor_aluguel valor_temporada],
+# location: %i[latitude longitude]

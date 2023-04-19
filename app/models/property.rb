@@ -18,18 +18,29 @@ class Property < ApplicationRecord
   # attribute :published, :boolean, default: false
   # attributes :highlighted, :boolean, default: false
 
-  # store_accessor :footage, :area_do_terreno, :area_construida, :area_total
-  # store_accessor :services, :dormitorio_empregada, :area_servico, :energia_eletrica, :banheiro_empregada
-  # store_accessor :leisure, :adega, :campo_futebol, :churrasqueira, :piscina, :jardim
-  # store_accessor :social, :pet, :escritorio, :sacada, :lavabo, :banheira, :cozinha, :jardim
-  # store_accessor :intimate, :quartos, :suites, :banheiros, :salas
-  # store_accessor :cabinet, :area_servico, :banheiro_empregada, :dormitorio_empregada, :lavanderia, :cozinha, :sala, :quarto, :banheiro
-  # store_accessor :address, :CEP, :logradouro, :numero, :complemento, :bairro, :cidade, :estado
-  # store_accessor :floor, :ardosia, :carpete, :ceramica, :granito, :madeira, :marmore, :porcelanato, :pvc, :taco, :tijolinho, :vinilico
-  # store_accessor :infrastructure, :ar_condicionado, :deposito, :elevador, :jardim_inverno, :portao_eletronico, :sistema_seguranca, :mobilia, :vagas_cobertas, :vagas_descobertas
-  # store_accessor :finality, :comercial, :residencial, :rural, :terreno, :temporada, :industrial, :lazer, :outros
-  # store_accessor :category, :apartamento, :casa, :chacara, :fazenda, :flat, :kitnet, :loja, :sala, :sobrado, :terreno, :outros
-  # store_accessor :intention, :venda, :aluguel, :temporada
-  # store_accessor :price, :valor_venda, :condominio, :iptu, :valor_aluguel, :valor_temporada
-  # store_accessor :location, :latitude, :longitude
+  store_accessor :footage, :area_do_terreno, :area_construida, :area_total
+  store_accessor :services, :dormitorio_empregada, :area_servico, :energia_eletrica, :banheiro_empregada
+  store_accessor :leisure, :adega, :campo_futebol, :churrasqueira, :piscina, :jardim
+  store_accessor :social, :pet, :escritorio, :sacada, :lavabo, :banheira, :cozinha, :jardim
+  store_accessor :intimate, :quartos, :suites, :banheiros, :salas
+  store_accessor :cabinet, :area_servico, :banheiro_empregada, :dormitorio_empregada, :lavanderia, :cozinha, :sala, :quarto, :banheiro
+  store_accessor :address, :CEP, :logradouro, :numero, :complemento, :bairro, :cidade, :estado
+  store_accessor :floor, :ardosia, :carpete, :ceramica, :granito, :madeira, :marmore, :porcelanato, :pvc, :taco, :tijolinho, :vinilico
+  store_accessor :infrastructure, :ar_condicionado, :deposito, :elevador, :jardim_inverno, :portao_eletronico, :sistema_seguranca, :mobilia, :vagas_cobertas, :vagas_descobertas
+  store_accessor :finality, :comercial, :residencial, :rural, :terreno, :temporada, :industrial, :lazer, :outros
+  store_accessor :category, :apartamento, :casa, :chacara, :fazenda, :flat, :kitnet, :loja, :sala, :sobrado, :terreno, :outros
+  store_accessor :intention, :venda, :aluguel, :temporada
+  store_accessor :price, :valor_venda, :condominio, :iptu, :valor_aluguel, :valor_temporada
+  store_accessor :location, :latitude, :longitude
+
+
+  # def fill_address_with_cep
+  #   return if self.address[:CEP].blank?
+  #   via_cep = ViaCep::Address.new(self.address[:CEP])
+  #   self.address[:logradouro] = via_cep.logradouro
+  #   self.address[:complemento] = via_cep.complemento
+  #   self.address[:bairro] = via_cep.bairro
+  #   self.address[:cidade] = via_cep.localidade
+  #   self.address[:estado] = via_cep.uf
+  # end
 end

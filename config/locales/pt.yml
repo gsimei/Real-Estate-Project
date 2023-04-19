@@ -37,7 +37,7 @@ pt:
   sala: Sala
   quarto: Quarto
   banheiro: Banheiro
-  address: "Endereço"
+  address: "Localização do imóvel"
   CEP: CEP
   logradouro: Logradouro
   numero: Número
