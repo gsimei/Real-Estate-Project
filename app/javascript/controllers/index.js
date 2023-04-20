@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import CepController from "./cep_controller"
 application.register("cep", CepController)
+
+import FinalityController from "./finality_controller"
+application.register("finality", FinalityController)

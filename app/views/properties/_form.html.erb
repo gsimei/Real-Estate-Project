@@ -1,73 +1,100 @@
 <%= simple_form_for @property do |f| %>
-  <h3><%= t(:address.to_s) %></h3>
-  <%= f.fields_for :address do |ff| %>
-  <%= ff.input :cep, input_html: { class: "form-control", id: "cep", "data-controller": "cep", "data-action": "blur->cep#buscarEndereco", "data-cep-target": "cep" } %>
-
-  <%= ff.input :logradouro, input_html: { class: "form-control", id: "logradouro", "data-cep-target": "logradouro" } %>
-
-  <%= ff.input :bairro, input_html: { class: "form-control", id: "bairro", "data-cep-target": "bairro" } %>
-
-  <%= ff.input :cidade, input_html: { class: "form-control", id: "cidade", "data-cep-target": "cidade" } %>
-
-  <%= ff.input :estado, input_html: { class: "form-control", id: "estado", "data-cep-target": "estado" } %>
+  <fieldset class="fieldset">
+    <legend>Estrutura</legend>
+    <%= f.label t(:finality) %>
+    <%= f.collection_select :finality, Property::FINALITY_OPTIONS, :to_s, :humanize, { include_blank: "Selecione" }, "data-finality-target": "finality", "data-finality-options": "#{Property::FINALITY_OPTIONS.join(",")}", "data-controller": "finality" %>
+    <%= f.label t(:category) %>
+    <%= f.collection_select :category, Property::CATEGORY_OPTIONS, :to_s, :humanize, { include_blank: "Selecione" },  id: "category", "data-finality-target": "category" %>
+  </fieldset>
+  <fieldset class="fieldset">
+    <%= f.fields_for :address do |ff| %>
+    <legend><%= t(:address.to_s) %></legend>
+      <%= ff.label :CEP %>
+      <%= ff.text_field :CEP, class: "form-control", id: "cep", data: { controller: "cep", action: "blur->cep#buscarEndereco", cep_target: "cep" } %>
+      <%= ff.label :logradouro %>
+      <%= ff.text_field :logradouro, class: "form-control", id: "logradouro", data: { cep_target: "logradouro" } %>
+      <%= ff.label :numero %>
+      <%= ff.text_field :numero, class: "form-control", id: "numero" %>
+      <%= ff.label :bairro %>
+      <%= ff.text_field :bairro, class: "form-control", id: "bairro", data: { cep_target: "bairro" } %>
+      <%= ff.label :cidade %>
+      <%= ff.text_field :cidade, class: "form-control", id: "cidade", data: { cep_target: "cidade" } %>
+      <%= ff.label :estado %>
+      <%= ff.text_field :estado, class: "form-control", id: "estado", data: { cep_target: "estado" } %>
+    <% end %>
+  </fieldset>
+  <fieldset class="fieldset">
+    <legend>Detalhes</legend>
+    <table>
+      <tbody>
+        <tr>
+          <th><%= t(:footage.to_s) %></th>
+          <td>
+            <% @property.footage.each do |key, value| %>
+              <%= f.label t(key.to_s) %>
+              <%= f.number_field key, label: t(key.to_s) %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th><%= t(:services.to_s) %></th>
+          <td>
+            <% @property.services.each do |key, value| %>
+              <%= f.input key, as: :boolean, label: t(key.to_s) %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th><%= t(:leisure.to_s) %></th>
+          <td>
+            <% @property.leisure.each do |key, value| %>
+              <%= f.input key, as: :boolean, label: t(key.to_s) %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th><%= t(:social.to_s) %></th>
+          <td>
+            <% @property.social.each do |key, value| %>
+              <%= f.input key, as: :boolean, label: t(key.to_s) %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th><%= t(:intimate.to_s) %></th>
+          <td>
+            <% @property.intimate.each do |key, value| %>
+              <%= f.label t(key.to_s) %>
+              <%= f.number_field key, label: t(key.to_s) %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th><%= t(:cabinet.to_s) %></th>
+            <td>
+              <% @property.cabinet.each do |key, value| %>
+                <%= f.input key, as: :boolean, label: t(key.to_s) %>
+              <% end %>
+            </td>
+        </tr>
+        <tr>
+          <th><%= t(:floor.to_s) %></th>
+          <td>
+            <% @property.floor.each do |key, value| %>
+              <%= f.input key, as: :boolean, label: t(key.to_s) %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th><%= t(:infrastructure.to_s) %></th>
+          <td>
+            <% @property.infrastructure.each do |key, value| %>
+              <%= f.input key, as: :boolean, label: t(key.to_s) %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+  <%= f.button :submit, label: "SALVAR", class: "btn btn-primary" %>
 <% end %>
-
-
-<div>
-  <h3><%= t(:footage.to_s) %></h3>
-  <% @property.footage.each do |key, value| %>
-    <%= f.label t(key.to_s) %>
-    <%= f.number_field key, label: t(key.to_s) %>
-  <% end %>
-    <h3><%= t(:services.to_s) %></h3>
-  <div class="d-flex">
-    <% @property.services.each do |key, value| %>
-      <%= f.input key, as: :boolean, label: t(key.to_s) %>
-    <% end %>
-  </div>
-    <h3><%= t(:leisure.to_s) %></h3>
-  <div class="d-flex">
-    <% @property.leisure.each do |key, value| %>
-      <%= f.input key, as: :boolean, label: t(key.to_s) %>
-    <% end %>
-  </div>
-  <h3><%= t(:social.to_s) %></h3>
-  <div class="d-flex">
-    <% @property.social.each do |key, value| %>
-      <%= f.input key, as: :boolean, label: t(key.to_s) %>
-    <% end %>
-  </div>
-  <h3><%= t(:intimate.to_s) %></h3>
-  <div>
-    <% @property.intimate.each do |key, value| %>
-      <%= f.label t(key.to_s) %>
-      <%= f.number_field key, label: t(key.to_s) %>
-    <% end %>
-  </div>
-  <h3><%= t(:cabinet.to_s) %></h3>
-  <div class="d-flex">
-    <% @property.cabinet.each do |key, value| %>
-      <%= f.input key, as: :boolean, label: t(key.to_s) %>
-    <% end %>
-  </div>
-  <h3><%= t(:floor.to_s) %></h3>
-  <div class="d-flex">
-    <% @property.floor.each do |key, value| %>
-      <%= f.input key, as: :boolean, label: t(key.to_s) %>
-    <% end %>
-  </div>
-  <h3><%= t(:infrastructure.to_s) %></h3>
-  <div class="d-flex">
-    <% @property.infrastructure.each do |key, value| %>
-      <%= f.input key, as: :boolean, label: t(key.to_s) %>
-    <% end %>
-  </div>
-</div>
-  <%= f.button :submit %>
-<% end %>
-
-
-<%# @property.address.each do |key, value| %>
-    <%#= f.label t(key.to_s) %>
-    <%#= f.number_field key, label: t(key.to_s) %>
-  <%# end %>

@@ -16,20 +16,20 @@
 <% area_total =  @property.footage['area_do_terreno'].to_f + @property.footage['area_construida'].to_f  %>
 <p>Area Total = <%= number_with_precision(area_total, precision: 2) %></p>
 <% @property.services.each do |key, value| %>
-  <% if value == true %>
+  <% if value == "1" %>
     <%= t("#{key}") %><br>
   <% end %>
 <% end %>
 <br>
 <% @property.leisure.each do |key, value| %>
-  <% if value == true %>
+  <% if value == "1" %>
     <%= t("#{key}") %>
   <% end %>
 <% end %>
 <br>
 <% if @property.social.present? %>
   <% @property.social.each do |key, value| %>
-    <% if value == true %>
+    <% if value == "1" %>
       <%= t("#{key}") %>
     <% end %>
   <% end %>
@@ -37,7 +37,7 @@
 <br>
 <% if @property.intimate.present? %>
   <% @property.intimate.each do |key, value| %>
-    <% if value == true %>
+    <% if value == "1" %>
       <%= t("#{key}") %>
     <% end %>
   <% end %>
@@ -45,7 +45,7 @@
 <br>
 <% if @property.services.present? %>
   <% @property.services.each do |key, value| %>
-    <% if value == true %>
+    <% if value == "1" %>
       <%= t("#{key}") %>
     <% end %>
   <% end %>
@@ -53,7 +53,7 @@
 <br>
 <% if @property.cabinet.present? %>
   <% @property.cabinet.each do |key, value| %>
-    <% if value == true %>
+    <% if value == "1" %>
       <%= t("#{key}") %>
     <% end %>
   <% end %>
@@ -61,7 +61,7 @@
 <br>
 <% if @property.floor.present? %>
   <% @property.floor.each do |key, value| %>
-    <% if value == true %>
+    <% if value == "1" %>
       <%= t("#{key}") %>
     <% end %>
   <% end %>
@@ -69,31 +69,31 @@
 <br>
 <% if @property.infrastructure.present? %>
   <% @property.infrastructure.each do |key, value| %>
-    <% if value == true %>
+    <% if value == "1" %>
       <%= t("#{key}") %>
     <% end %>
   <% end %>
 <% end %>
 <br>
 <% if @property.finality.present? %>
-  <% @property.finality.each do |key, value| %>
-    <% if value == true %>
-      <%= t("#{key}") %>
+  <% Property::FINALITY_OPTIONS.each do |option| %>
+    <% if @property.finality == option %>
+      <%= t(option.to_s) %>
     <% end %>
   <% end %>
 <% end %>
 <br>
 <% if @property.category.present? %>
-  <% @property.category.each do |key, value| %>
-    <% if value == true %>
-      <%= t("#{key}") %>
+  <% Property::CATEGORY_OPTIONS.each do |option| %>
+    <% if @property.category == option %>
+      <%= t(option.to_s) %>
     <% end %>
   <% end %>
 <% end %>
 <br>
 <% if @property.intention.present? %>
   <% @property.intention.each do |key, value| %>
-    <% if value == true %>
+    <% if value == "1" %>
       <%= t("#{key}") %>
     <% end %>
   <% end %>

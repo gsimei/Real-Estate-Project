@@ -1,5 +1,14 @@
 class Property < ApplicationRecord
   belongs_to :user
+  FINALITY_OPTIONS = %w[comercial residencial rural temporada industrial].freeze
+  COMERCIAL_OPTIONS = %w[área barracão casa galpão loja ponto sala salão terreno].freeze
+  RESIDENCIAL_OPTIONS = %w[apartamento casa chácara flat kitnet loja sala sobrado terreno rancho].freeze
+  RURAL_OPTIONS = %w[chácara fazenda sítio terreno].freeze
+  TEMPORADA_OPTIONS = %w[apartamento casa chácara flat kitnet loja sala sobrado sítio rancho].freeze
+  INDUSTRIAL_OPTIONS = %w[área barracão galpão loja pavilhão salão terreno].freeze
+  # CATEGORY_OPTIONS = %w[apartamento casa chácara fazenda flat kitnet loja sala sobrado terreno outros].freeze
+  # FINALITY_OPTIONS = %w[comercial residencial rural terreno temporada industrial lazer outros].freeze
+  CATEGORY_OPTIONS = %w[apartamento casa chacara fazenda flat kitnet loja sala sobrado terreno outros].freeze
 
   attribute :footage, :json, default: { area_do_terreno: nil, area_construida: nil, area_total: nil }
   attribute :services, :json, default: { dormitorio_empregada: false, area_servico: false, energia_eletrica: false, banheiro_empregada: false }
@@ -10,13 +19,13 @@ class Property < ApplicationRecord
   attribute :address, :json, default: { CEP: nil, logradouro: nil, numero: nil, complemento: nil, bairro: nil, cidade: nil, estado: nil}
   attribute :floor, :json, default: { ardosia: false, carpete: false, ceramica: false, granito: false, madeira: false, marmore: false, porcelanato: false, pvc: false, taco: false, tijolinho: false, vinilico: false }
   attribute :infrastructure, :json, default: { ar_condicionado: false, deposito: false, elevador: false, jardim_inverno: false, portao_eletronico: false, sistema_seguranca: false, mobilia: false, vagas_cobertas: nil, vagas_descobertas: nil }
-  attribute :finality, :json, default: { comercial: false, residencial: false, rural: false, terreno: false, temporada: false, industrial: false, lazer: false, outros: false }
-  attribute :category, :json, default: { apartamento: false, casa: false, chacara: false, fazenda: false, flat: false, kitnet: false, loja: false, sala: false, sobrado: false, terreno: false, outros: false }
   attribute :intention, :json, default: { venda: false, aluguel: false, temporada: false }
   attribute :price, :json, default: { valor_venda: nil, condominio: nil, iptu: nil, valor_aluguel: nil, valor_temporada: nil }
   attribute :location, :json, default: { latitude: nil, longitude: nil }
   # attribute :published, :boolean, default: false
   # attributes :highlighted, :boolean, default: false
+  # attribute :finality, :json, default: { comercial: false, residencial: false, rural: false, terreno: false, temporada: false, industrial: false, lazer: false, outros: false }
+  # attribute :category, :json, default: { apartamento: false, casa: false, chacara: false, fazenda: false, flat: false, kitnet: false, loja: false, sala: false, sobrado: false, terreno: false, outros: false }
 
   store_accessor :footage, :area_do_terreno, :area_construida, :area_total
   store_accessor :services, :dormitorio_empregada, :area_servico, :energia_eletrica, :banheiro_empregada
@@ -27,20 +36,11 @@ class Property < ApplicationRecord
   store_accessor :address, :CEP, :logradouro, :numero, :complemento, :bairro, :cidade, :estado
   store_accessor :floor, :ardosia, :carpete, :ceramica, :granito, :madeira, :marmore, :porcelanato, :pvc, :taco, :tijolinho, :vinilico
   store_accessor :infrastructure, :ar_condicionado, :deposito, :elevador, :jardim_inverno, :portao_eletronico, :sistema_seguranca, :mobilia, :vagas_cobertas, :vagas_descobertas
-  store_accessor :finality, :comercial, :residencial, :rural, :terreno, :temporada, :industrial, :lazer, :outros
-  store_accessor :category, :apartamento, :casa, :chacara, :fazenda, :flat, :kitnet, :loja, :sala, :sobrado, :terreno, :outros
+  # store_accessor :finality, :comercial, :residencial, :rural, :terreno, :temporada, :industrial, :lazer, :outros
+  # store_accessor :category, :apartamento, :casa, :chacara, :fazenda, :flat, :kitnet, :loja, :sala, :sobrado, :terreno, :outros
   store_accessor :intention, :venda, :aluguel, :temporada
   store_accessor :price, :valor_venda, :condominio, :iptu, :valor_aluguel, :valor_temporada
   store_accessor :location, :latitude, :longitude
 
 
-  # def fill_address_with_cep
-  #   return if self.address[:CEP].blank?
-  #   via_cep = ViaCep::Address.new(self.address[:CEP])
-  #   self.address[:logradouro] = via_cep.logradouro
-  #   self.address[:complemento] = via_cep.complemento
-  #   self.address[:bairro] = via_cep.bairro
-  #   self.address[:cidade] = via_cep.localidade
-  #   self.address[:estado] = via_cep.uf
-  # end
 end

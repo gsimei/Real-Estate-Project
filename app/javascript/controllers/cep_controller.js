@@ -1,7 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
 import $ from "jquery"
-console.log("fgr")
-
 
 export default class extends Controller {
   static targets = ["cep", "logradouro", "bairro", "cidade", "estado"]
